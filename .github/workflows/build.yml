@@ -1,0 +1,25 @@
+name: Build Zygisk Module
+
+on: [push, workflow_dispatch]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          submodules: recursive
+      - name: Setup NDK
+        run: |
+          wget -q https://dl.google.com/android/repository/android-ndk-r26d-linux.zip
+          unzip -q android-ndk-r26d-linux.zip
+          echo "NDK=$PWD/android-ndk-r26d" >> $GITHUB_ENV
+      - name: Build
+        run: |
+          cd module
+          $NDK/ndk-build
+      - name: Upload artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: zygisk-libs
+          path: module/libs/
