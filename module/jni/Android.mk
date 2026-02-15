@@ -14,6 +14,6 @@ include jni/libcxx/Android.mk
 
 # include $(CLEAR_VARS)
 # LOCAL_MODULE := example
-# LOCAL_SRC_FILES := module.cpp
+# LOCAL_SRC_FILES := example
 # LOCAL_LDLIBS := -llog -lstdc++
 # include $(BUILD_SHARED_LIBRARY)
